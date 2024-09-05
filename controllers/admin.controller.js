@@ -11,7 +11,7 @@ exports.addTechnology = asyncHanlder(async (req, res) => {
     res.json({ message: "Technology Create Success" })
 })
 exports.getTechnology = asyncHanlder(async (req, res) => {
-    const result = await Technology.find66()
+    const result = await Technology.find()
     res.json({ message: "Technology Fetch Success", result })
 })
 exports.updateTechnology = asyncHanlder(async (req, res) => {
