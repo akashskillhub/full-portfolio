@@ -4,6 +4,7 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 require("dotenv").config()
 const path = require("path")
+const { adminProtected } = require("./middlewares/protected")
 
 
 const app = express()
@@ -18,7 +19,8 @@ app.use(cors({
 
 // routes
 app.use("/api/auth", require("./routes/auth.routes"))
-app.use("/api/admin", require("./routes/admin.routes"))
+app.use("/api/admin", adminProtected, require("./routes/admin.routes"))
+app.use("/api/public", require("./routes/public.routes"))
 
 // 404
 app.use("*", (req, res) => {
