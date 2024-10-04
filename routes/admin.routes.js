@@ -21,5 +21,7 @@ router
     .get("/get-projects", admin.getProjects)
     .delete("/delete-project/:id", admin.deleteProjects)
 
+    .get("/get-enquery", admin.fetchEnqueryMessage)
+
 
 module.exports = router
