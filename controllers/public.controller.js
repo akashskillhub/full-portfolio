@@ -32,12 +32,12 @@ exports.AddEnqueryMessage = asyncHandler(async (req, res) => {
     if (!Validator.isMobilePhone(mobile, "en-IN")) {
         return res.status(400).json({ message: "Invalid Mobile" })
     }
-    sendEmail({
+    await sendEmail({
         to: "skillhubitsolution.com",
         message: `comapny ${company} , email ${email}, mobile ${mobile} message ${message}`,
         subject: `New Enquery from ${company}`
     })
-    sendEmail({
+    await sendEmail({
         to: email,
         message: `Thank you for enquery. I will get in touch with you soon.`,
         subject: `Thank you for your intrest.`
