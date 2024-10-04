@@ -8,6 +8,7 @@ const Carousel = require("../models/Carousel")
 const path = require("path")
 const { error } = require("console")
 const Projects = require("../models/Projects")
+const Enquery = require("../models/Enquery")
 exports.addTechnology = asyncHanlder(async (req, res) => {
     const { name, category } = req.body
     const { isError, error } = checkEmpty({ name, category })
@@ -210,7 +211,6 @@ exports.addProject = asyncHanlder(async (req, res) => {
 
 
 })
-
 exports.getProjects = asyncHanlder(async (req, res) => {
     const result = await Projects.find()
     res.json({ message: "Projects Fetch Success", result })
@@ -241,4 +241,19 @@ exports.deleteProjects = asyncHanlder(async (req, res) => {
     await Projects.findByIdAndDelete(id)
 
     res.json({ message: "Projects Delete Success" })
+})
+
+
+exports.fetchEnqueryMessage = asyncHanlder(async (req, res) => {
+    const result = await Enquery.find()
+    res.json({ message: "Enquery Message Fetch Success...!", result })
+})
+
+exports.updateEnqueryMessage = asyncHanlder(async (req, res) => {
+    await Enquery.findByIdAndUpdate(req.params.id, req.body)
+    res.json({ message: "Enquery Message Updated Success...!", })
+})
+exports.deleteEnqueryMessage = asyncHanlder(async (req, res) => {
+    await Enquery.findByIdAndDelete(req.params.id,)
+    res.json({ message: "Enquery Message Delete Success...!", })
 })
